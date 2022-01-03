@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8111A3C527864CD400E6B4A0 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A3C427864CD300E6B4A0 /* TableViewCell.swift */; };
 		81D7D22A2781D38200D46DD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7D2292781D38200D46DD0 /* AppDelegate.swift */; };
 		81D7D22C2781D38300D46DD0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7D22B2781D38300D46DD0 /* SceneDelegate.swift */; };
 		81D7D2332781D38500D46DD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D7D2322781D38500D46DD0 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8111A3C427864CD300E6B4A0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		81D7D2262781D38200D46DD0 /* VIPER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VIPER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D7D2292781D38200D46DD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81D7D22B2781D38300D46DD0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,90 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8111A3BF27864B9800E6B4A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				81D7D23E2781D60000D46DD0 /* View.swift */,
+				8111A3C427864CD300E6B4A0 /* TableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8111A3C027864BA600E6B4A0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				81D7D2402781D61B00D46DD0 /* Interactor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		8111A3C127864BB400E6B4A0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				81D7D2422781D62A00D46DD0 /* Presenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8111A3C227864BBF00E6B4A0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				81D7D2442781D63E00D46DD0 /* Entity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		8111A3C327864BCB00E6B4A0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				81D7D2462781D64C00D46DD0 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		815715EF278C790800E73447 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				815715F0278C792900E73447 /* App */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		815715F0278C792900E73447 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				81D7D22B2781D38300D46DD0 /* SceneDelegate.swift */,
+				81D7D2292781D38200D46DD0 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		815715F1278C794500E73447 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				81D7D2322781D38500D46DD0 /* Assets.xcassets */,
+				815715F2278C795100E73447 /* Configs */,
+				815715F3278C796000E73447 /* Storyboards */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		815715F2278C795100E73447 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				81D7D2372781D38500D46DD0 /* Info.plist */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		815715F3278C796000E73447 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				81D7D2342781D38500D46DD0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		81D7D21D2781D38200D46DD0 = {
 			isa = PBXGroup;
 			children = (
@@ -62,12 +148,9 @@
 		81D7D2282781D38200D46DD0 /* VIPER */ = {
 			isa = PBXGroup;
 			children = (
+				815715F1278C794500E73447 /* Resources */,
+				815715EF278C790800E73447 /* Sources */,
 				81D7D23D2781D5E900D46DD0 /* VIPER */,
-				81D7D2292781D38200D46DD0 /* AppDelegate.swift */,
-				81D7D22B2781D38300D46DD0 /* SceneDelegate.swift */,
-				81D7D2322781D38500D46DD0 /* Assets.xcassets */,
-				81D7D2342781D38500D46DD0 /* LaunchScreen.storyboard */,
-				81D7D2372781D38500D46DD0 /* Info.plist */,
 			);
 			path = VIPER;
 			sourceTree = "<group>";
@@ -75,11 +158,11 @@
 		81D7D23D2781D5E900D46DD0 /* VIPER */ = {
 			isa = PBXGroup;
 			children = (
-				81D7D23E2781D60000D46DD0 /* View.swift */,
-				81D7D2402781D61B00D46DD0 /* Interactor.swift */,
-				81D7D2422781D62A00D46DD0 /* Presenter.swift */,
-				81D7D2442781D63E00D46DD0 /* Entity.swift */,
-				81D7D2462781D64C00D46DD0 /* Router.swift */,
+				8111A3BF27864B9800E6B4A0 /* View */,
+				8111A3C027864BA600E6B4A0 /* Interactor */,
+				8111A3C127864BB400E6B4A0 /* Presenter */,
+				8111A3C227864BBF00E6B4A0 /* Entity */,
+				8111A3C327864BCB00E6B4A0 /* Router */,
 			);
 			path = VIPER;
 			sourceTree = "<group>";
@@ -155,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81D7D2472781D64C00D46DD0 /* Router.swift in Sources */,
+				8111A3C527864CD400E6B4A0 /* TableViewCell.swift in Sources */,
 				81D7D2432781D62A00D46DD0 /* Presenter.swift in Sources */,
 				81D7D23F2781D60000D46DD0 /* View.swift in Sources */,
 				81D7D2452781D63E00D46DD0 /* Entity.swift in Sources */,

@@ -19,11 +19,15 @@ protocol AnyPresenter {
     var router: AnyRouter? { get set }
     var interactor: AnyInteractor? { get set }
     var view: AnyView? { get set }
+    var tableViewCell: AnyTableViewCell? { get set }
 
-    func interctorDidFetchSettingsPoints(with result: [SettingsPoint])
+    func interactorDidFetchSettingsPoints(with result: [[SettingsPoint]])
+    func getCurrentSettingsPoint(with indexPath: IndexPath) -> SettingsPoint?
 }
 
 class UserPresenter: AnyPresenter {
+    var tableViewCell: AnyTableViewCell?
+
     //MARK: - Properties
 
     var interactor: AnyInteractor? {
@@ -37,7 +41,12 @@ class UserPresenter: AnyPresenter {
 
     //MARK: - Functions
 
-    func interctorDidFetchSettingsPoints(with result: [SettingsPoint]) {
-        view?.update(with: result)
+    func interactorDidFetchSettingsPoints(with result: [[SettingsPoint]]) {
+        view?.getSettingsPoints(with: result)
+    }
+
+    func getCurrentSettingsPoint(with indexPath: IndexPath) -> SettingsPoint? {
+        guard let settingsPoints = view?.settingsPoints else { return nil }
+        return settingsPoints[indexPath.section][indexPath.row]
     }
 }

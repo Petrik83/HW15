@@ -22,6 +22,7 @@ class UserInteractor: AnyInteractor {
 
     func getSettingsPoints() {
         let entities = SettingsPoint.getSettingPoints()
-        self.presenter?.interctorDidFetchSettingsPoints(with: entities)
+        self.presenter?.interactorDidFetchSettingsPoints(with: entities)
     }
+
 }
