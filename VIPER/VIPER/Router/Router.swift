@@ -6,40 +6,51 @@
 //
 
 import Foundation
-import UIKit
+//import UIKit
 
 //Object
 //Entry point
-typealias EntryPoint = AnyView & UIViewController
+typealias EntryPoint = AnyView //& UIViewController
 
 protocol AnyRouter {
-    var entry: EntryPoint? { get }
+    //var view: EntryPoint? { get }
+    var presenter: AnyPresenter? { get }
 
-    static func start() -> AnyRouter
+    static func start() -> SettingsAppRouter
+    func openAnotherScreen()
 }
 
-class UserRouter: AnyRouter {
-    var entry: EntryPoint?
+class SettingsAppRouter: AnyRouter {
+    //weak var view: EntryPoint?
+    weak var presenter: AnyPresenter?
 
-    static func start() -> AnyRouter {
-        let router = UserRouter()
+    static func start() -> SettingsAppRouter {
+        let router = SettingsAppRouter()
 
-        //Assign VIP
-        var view: AnyView = UserViewController()
-        var interactor: AnyInteractor = UserInteractor()
-        var presenter: AnyPresenter = UserPresenter()
+        var view: EntryPoint = SettingsAppViewController()
+        var interactor: AnyInteractor = SettingsAppInteractor()
+        var presenter: AnyPresenter = SettingsAppPresenter()
 
         view.presenter = presenter
         interactor.presenter = presenter
+        router.presenter = presenter
 
         presenter.router = router
         presenter.view = view
         presenter.interactor = interactor
 
-        router.entry = view as? EntryPoint
-
+        //router.view = view
 
         return router
+    }
+
+    func openAnotherScreen() {
+        let newViewController = SettingsAppViewController()
+        newViewController.view.backgroundColor = .red
+        presenter?.view?.pushViewController(newViewController)
+        //let view = presenter?.view as? UIViewController
+        //view?.navigationController?.pushViewController(newViewController, animated: true)
+        //view?.present(newViewController, animated: true, completion: nil)
     }
 
 

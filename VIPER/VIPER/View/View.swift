@@ -17,11 +17,12 @@ protocol AnyView {
     var settingsPoints: [[SettingsPoint]] { get set }
 
     func getSettingsPoints(with settingsPoints: [[SettingsPoint]])
+    func pushViewController(_ viewController: AnyView)
 }
 
 //MARK: - ViewController
 
-class UserViewController: UIViewController {
+class SettingsAppViewController: UIViewController {
 
     var presenter: AnyPresenter?
 
@@ -68,25 +69,30 @@ class UserViewController: UIViewController {
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
     }
 
-    //MARK: - Get settings points -
+    //MARK: - Other functions -
 
     func getSettingsPoints(with settingsPoints: [[SettingsPoint]]) {
         self.settingsPoints = settingsPoints
+    }
+
+    func pushViewController(_ viewController: AnyView) {
+        guard let newViewController = viewController as? UIViewController else { return }
+        self.navigationController?.pushViewController(newViewController, animated: true)
     }
 
 }
 
 //MARK: - Extensions
 
-extension UserViewController: AnyView {
+extension SettingsAppViewController: AnyView {
 
 }
 
-extension UserViewController: UITableViewDelegate {
+extension SettingsAppViewController: UITableViewDelegate {
 
 }
 
-extension UserViewController: UITableViewDataSource {
+extension SettingsAppViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingsPoints[section].count
     }
@@ -95,7 +101,7 @@ extension UserViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as? TableViewCell else { return UITableViewCell() }
 
         let settingsPoint = presenter?.getCurrentSettingsPoint(with: indexPath)
-        cell.configureCell(with: settingsPoint)
+        cell.configureCell(with: settingsPoint, presenter: presenter)
 
         return cell
     }

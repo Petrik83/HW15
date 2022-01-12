@@ -17,7 +17,7 @@ protocol AnyInteractor {
     func getSettingsPoints()
 }
 
-class UserInteractor: AnyInteractor {
+class SettingsAppInteractor: AnyInteractor {
     var presenter: AnyPresenter?
 
     func getSettingsPoints() {

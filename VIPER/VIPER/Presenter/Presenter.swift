@@ -15,7 +15,7 @@ enum FetchError: Error {
     case failed
 }
 
-protocol AnyPresenter {
+protocol AnyPresenter: class {
     var router: AnyRouter? { get set }
     var interactor: AnyInteractor? { get set }
     var view: AnyView? { get set }
@@ -25,8 +25,7 @@ protocol AnyPresenter {
     func getCurrentSettingsPoint(with indexPath: IndexPath) -> SettingsPoint?
 }
 
-class UserPresenter: AnyPresenter {
-    var tableViewCell: AnyTableViewCell?
+class SettingsAppPresenter: AnyPresenter {
 
     //MARK: - Properties
 
@@ -38,6 +37,7 @@ class UserPresenter: AnyPresenter {
 
     var view: AnyView?
     var router: AnyRouter?
+    var tableViewCell: AnyTableViewCell?
 
     //MARK: - Functions
 
@@ -48,5 +48,9 @@ class UserPresenter: AnyPresenter {
     func getCurrentSettingsPoint(with indexPath: IndexPath) -> SettingsPoint? {
         guard let settingsPoints = view?.settingsPoints else { return nil }
         return settingsPoints[indexPath.section][indexPath.row]
+    }
+
+    func pushViewController(_ viewController: AnyView) {
+        view?.pushViewController(viewController)
     }
 }
