@@ -5,18 +5,11 @@
 //  Created by Дмитрий Казанков on 02.01.2022.
 //
 
-import Foundation
 import UIKit
 
-//ViewController
-//protocol
-//reference presenter
-
-protocol AnyView {
+protocol AnyView: AnyObject {
     var presenter: AnyPresenter? { get set }
-    var settingsPoints: [[SettingsPoint]] { get set }
 
-    func getSettingsPoints(with settingsPoints: [[SettingsPoint]])
     func pushViewController(_ viewController: AnyView)
 }
 
@@ -24,16 +17,16 @@ protocol AnyView {
 
 class SettingsAppViewController: UIViewController {
 
-    var presenter: AnyPresenter?
+    weak var presenter: AnyPresenter?
 
-    private let tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
+        tableView.dataSource = self
+        //tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
-    var settingsPoints: [[SettingsPoint]] = []
 
     //MARK: - Lifecycle -
 
@@ -41,9 +34,10 @@ class SettingsAppViewController: UIViewController {
         super.viewDidLoad()
 
         setupHierechy()
-        setupTableView()
         setupView()
         setupLayout()
+
+        presenter?.viewDidLoad()
     }
 
     //MARK: - Settings
@@ -52,13 +46,7 @@ class SettingsAppViewController: UIViewController {
         view.addSubview(tableView)
     }
 
-    private func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-    }
-
     private func setupView() {
-        view.backgroundColor = .systemBlue
         title = "Настройки"
     }
 
@@ -71,10 +59,6 @@ class SettingsAppViewController: UIViewController {
 
     //MARK: - Other functions -
 
-    func getSettingsPoints(with settingsPoints: [[SettingsPoint]]) {
-        self.settingsPoints = settingsPoints
-    }
-
     func pushViewController(_ viewController: AnyView) {
         guard let newViewController = viewController as? UIViewController else { return }
         self.navigationController?.pushViewController(newViewController, animated: true)
@@ -85,16 +69,12 @@ class SettingsAppViewController: UIViewController {
 //MARK: - Extensions
 
 extension SettingsAppViewController: AnyView {
-
-}
-
-extension SettingsAppViewController: UITableViewDelegate {
-
+    
 }
 
 extension SettingsAppViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingsPoints[section].count
+        return presenter?.numberOfRowsInSection(section) ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,7 +87,7 @@ extension SettingsAppViewController: UITableViewDataSource {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return settingsPoints.count
+        return presenter?.numberOfSections() ?? 0
     }
 }
 

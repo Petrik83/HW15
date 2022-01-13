@@ -7,11 +7,7 @@
 
 import Foundation
 
-//object
-//protocol
-//ref to presenter
-
-protocol AnyInteractor {
+protocol AnyInteractor: AnyObject {
     var presenter: AnyPresenter? { get set }
 
     func getSettingsPoints()

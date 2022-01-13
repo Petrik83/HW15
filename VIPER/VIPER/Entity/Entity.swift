@@ -7,17 +7,13 @@
 
 import Foundation
 
-//Model
-
 struct SettingsPoint {
     let label: String
     let iconImageName: String
     let backgroundColorName: String
     let needForSwitch: Bool
     let detailLabel: String?
-}
 
-extension SettingsPoint {
     static func getSettingPoints() -> [[SettingsPoint]] {
         return [[
             SettingsPoint(label: "Авиарежим",

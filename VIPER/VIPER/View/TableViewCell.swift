@@ -5,16 +5,7 @@
 //  Created by Дмитрий Казанков on 06.01.2022.
 //
 
-import Foundation
 import UIKit
-
-protocol AnyTableViewCell {
-    //var iconImageView: UIImageView { get set }
-    //var label: UILabel { get set }
-    var presenter: AnyPresenter? { get }
-
-    //func configureCell(with cellInfo: SettingsPoint?)
-}
 
 class TableViewCell: UITableViewCell {
     var presenter: AnyPresenter?
@@ -104,10 +95,7 @@ class TableViewCell: UITableViewCell {
 
     // MARK: - Actions -
     @objc func openAnotherScreen() {
-        presenter?.router?.openAnotherScreen()
+        presenter?.openAnotherScreen()
     }
 }
 
-extension TableViewCell: AnyTableViewCell {
-
-}
