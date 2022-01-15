@@ -14,7 +14,7 @@ protocol AnyInteractor: AnyObject {
 }
 
 class SettingsAppInteractor: AnyInteractor {
-    var presenter: AnyPresenter?
+    weak var presenter: AnyPresenter?
 
     func getSettingsPoints() {
         let entities = SettingsPoint.getSettingPoints()

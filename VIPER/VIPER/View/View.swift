@@ -17,13 +17,13 @@ protocol AnyView: AnyObject {
 
 class SettingsAppViewController: UIViewController {
 
-    weak var presenter: AnyPresenter?
+    var presenter: AnyPresenter?
 
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
         tableView.dataSource = self
-        //tableView.delegate = self
+        tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -70,6 +70,13 @@ class SettingsAppViewController: UIViewController {
 
 extension SettingsAppViewController: AnyView {
     
+}
+
+extension SettingsAppViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.openAnotherScreen()
+    }
 }
 
 extension SettingsAppViewController: UITableViewDataSource {

@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol AnyRouter {
-    var presenter: AnyPresenter? { get }
+protocol AnyRouter: AnyObject {
+    var presenter: AnyPresenter? { get set }
 
-    static func start() -> SettingsAppRouter
+    static func start() -> AnyView
     func openAnotherScreen()
 }
 
 class SettingsAppRouter: AnyRouter {
     weak var presenter: AnyPresenter?
 
-    static func start() -> SettingsAppRouter {
+    static func start() -> AnyView {
         let router = SettingsAppRouter()
 
         let view: AnyView = SettingsAppViewController()
@@ -32,7 +32,7 @@ class SettingsAppRouter: AnyRouter {
         presenter.view = view
         presenter.interactor = interactor
 
-        return router
+        return view
     }
 
     func openAnotherScreen() {

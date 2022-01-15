@@ -8,7 +8,6 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-    var presenter: AnyPresenter?
 
     lazy var iconImageView: UIImageView = {
         let iconImageView = UIImageView()
@@ -69,7 +68,6 @@ class TableViewCell: UITableViewCell {
     func configureCell(with cellInfo: SettingsPoint?, presenter: AnyPresenter?) {
         guard let cellInfo = cellInfo else { return }
 
-        self.presenter = presenter
         self.label.text = cellInfo.label
 
         lazy var someImage = UIImage(systemName: cellInfo.iconImageName)
@@ -89,13 +87,7 @@ class TableViewCell: UITableViewCell {
             let _switch = UISwitch()
             _switch.onTintColor = .systemBlue
             self.accessoryView = _switch
-            _switch.addTarget(self, action: #selector(openAnotherScreen), for: .valueChanged)
         }
-    }
-
-    // MARK: - Actions -
-    @objc func openAnotherScreen() {
-        presenter?.openAnotherScreen()
     }
 }
 

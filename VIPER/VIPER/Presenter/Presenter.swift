@@ -11,8 +11,8 @@ protocol AnyPresenter: AnyObject {
     var router: AnyRouter? { get set }
     var interactor: AnyInteractor? { get set }
     var view: AnyView? { get set }
-    var settingsPoints: [[SettingsPoint]]? { get set }
 
+    var settingsPoints: [[SettingsPoint]]? { get set }
     func viewDidLoad()
     func interactorDidFetchSettingsPoints(with result: [[SettingsPoint]])
     func getCurrentSettingsPoint(with indexPath: IndexPath) -> SettingsPoint?
@@ -28,7 +28,7 @@ class SettingsAppPresenter: AnyPresenter {
     //MARK: - Properties
 
     var interactor: AnyInteractor?
-    var view: AnyView?
+    weak var view: AnyView?
     var router: AnyRouter?
     var settingsPoints: [[SettingsPoint]]?
 
