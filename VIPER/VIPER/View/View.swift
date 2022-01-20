@@ -36,8 +36,7 @@ class SettingsAppViewController: UIViewController {
         setupHierechy()
         setupView()
         setupLayout()
-
-        presenter?.viewDidLoad()
+        presenter?.getStartingSetings()
     }
 
     //MARK: - Settings

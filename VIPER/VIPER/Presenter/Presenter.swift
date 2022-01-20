@@ -13,7 +13,7 @@ protocol AnyPresenter: AnyObject {
     var view: AnyView? { get set }
 
     var settingsPoints: [[SettingsPoint]]? { get set }
-    func viewDidLoad()
+    func getStartingSetings()
     func interactorDidFetchSettingsPoints(with result: [[SettingsPoint]])
     func getCurrentSettingsPoint(with indexPath: IndexPath) -> SettingsPoint?
     func numberOfRowsInSection(_ section: Int) -> Int
@@ -33,7 +33,7 @@ class SettingsAppPresenter: AnyPresenter {
     var settingsPoints: [[SettingsPoint]]?
 
     //MARK: - Functions
-    func viewDidLoad() {
+    func getStartingSetings() {
         interactor?.getSettingsPoints()
     }
 
