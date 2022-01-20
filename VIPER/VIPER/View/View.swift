@@ -58,17 +58,20 @@ class SettingsAppViewController: UIViewController {
 
     //MARK: - Other functions -
 
-    func pushViewController(_ viewController: SettingsViewProtocol) {
-        guard let newViewController = viewController as? UIViewController else { return }
-        self.navigationController?.pushViewController(newViewController, animated: true)
-    }
+//    func pushViewController(_ viewController: SettingsViewProtocol) {
+//        guard let newViewController = viewController as? UIViewController else { return }
+//        self.navigationController?.pushViewController(newViewController, animated: true)
+//    }
 
 }
 
 //MARK: - Extensions
 
 extension SettingsAppViewController: SettingsViewProtocol {
-    
+    func pushViewController(_ viewController: SettingsViewProtocol) {
+        guard let newViewController = viewController as? UIViewController else { return }
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
 }
 
 extension SettingsAppViewController: UITableViewDelegate {
