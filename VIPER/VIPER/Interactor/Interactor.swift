@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol AnyInteractor: AnyObject {
-    var presenter: AnyPresenter? { get set }
+protocol SettingsInteractorProtocol: AnyObject {
+    var presenter: SettingsPresenterProtocol? { get set }
 
     func getSettingsPoints()
 }
 
-class SettingsAppInteractor: AnyInteractor {
-    weak var presenter: AnyPresenter?
+class SettingsAppInteractor: SettingsInteractorProtocol {
+    weak var presenter: SettingsPresenterProtocol?
 
     func getSettingsPoints() {
         let entities = SettingsPoint.getSettingPoints()

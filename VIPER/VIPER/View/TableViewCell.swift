@@ -65,7 +65,7 @@ class TableViewCell: UITableViewCell {
 
     //MARK: - Configure cell -
 
-    func configureCell(with cellInfo: SettingsPoint?, presenter: AnyPresenter?) {
+    func configureCell(with cellInfo: SettingsPoint?, presenter: SettingsPresenterProtocol?) {
         guard let cellInfo = cellInfo else { return }
 
         self.label.text = cellInfo.label

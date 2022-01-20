@@ -7,17 +7,17 @@
 
 import UIKit
 
-protocol AnyView: AnyObject {
-    var presenter: AnyPresenter? { get set }
+protocol SettingsViewProtocol: AnyObject {
+    var presenter: SettingsPresenterProtocol? { get set }
 
-    func pushViewController(_ viewController: AnyView)
+    func pushViewController(_ viewController: SettingsViewProtocol)
 }
 
 //MARK: - ViewController
 
 class SettingsAppViewController: UIViewController {
 
-    var presenter: AnyPresenter?
+    var presenter: SettingsPresenterProtocol?
 
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
@@ -36,8 +36,7 @@ class SettingsAppViewController: UIViewController {
         setupHierechy()
         setupView()
         setupLayout()
-
-        presenter?.viewDidLoad()
+        presenter?.getStartingData()
     }
 
     //MARK: - Settings
@@ -59,17 +58,20 @@ class SettingsAppViewController: UIViewController {
 
     //MARK: - Other functions -
 
-    func pushViewController(_ viewController: AnyView) {
-        guard let newViewController = viewController as? UIViewController else { return }
-        self.navigationController?.pushViewController(newViewController, animated: true)
-    }
+//    func pushViewController(_ viewController: SettingsViewProtocol) {
+//        guard let newViewController = viewController as? UIViewController else { return }
+//        self.navigationController?.pushViewController(newViewController, animated: true)
+//    }
 
 }
 
 //MARK: - Extensions
 
-extension SettingsAppViewController: AnyView {
-    
+extension SettingsAppViewController: SettingsViewProtocol {
+    func pushViewController(_ viewController: SettingsViewProtocol) {
+        guard let newViewController = viewController as? UIViewController else { return }
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
 }
 
 extension SettingsAppViewController: UITableViewDelegate {
