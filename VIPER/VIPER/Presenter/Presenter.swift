@@ -7,33 +7,33 @@
 
 import Foundation
 
-protocol AnyPresenter: AnyObject {
-    var router: AnyRouter? { get set }
-    var interactor: AnyInteractor? { get set }
-    var view: AnyView? { get set }
+protocol SettingsPresenterProtocol: AnyObject {
+    var router: SettingsRouterProtocol? { get set }
+    var interactor: SettingsInteractorProtocol? { get set }
+    var view: SettingsViewProtocol? { get set }
 
     var settingsPoints: [[SettingsPoint]]? { get set }
-    func getStartingSetings()
+    func getStartingData()
     func interactorDidFetchSettingsPoints(with result: [[SettingsPoint]])
     func getCurrentSettingsPoint(with indexPath: IndexPath) -> SettingsPoint?
     func numberOfRowsInSection(_ section: Int) -> Int
     func numberOfSections() -> Int
     func openAnotherScreen()
-    func pushViewController(_ viewController: AnyView)
+    func pushViewController(_ viewController: SettingsViewProtocol)
 
 }
 
-class SettingsAppPresenter: AnyPresenter {
+class SettingsAppPresenter: SettingsPresenterProtocol {
 
     //MARK: - Properties
 
-    var interactor: AnyInteractor?
-    weak var view: AnyView?
-    var router: AnyRouter?
+    var interactor: SettingsInteractorProtocol?
+    weak var view: SettingsViewProtocol?
+    var router: SettingsRouterProtocol?
     var settingsPoints: [[SettingsPoint]]?
 
     //MARK: - Functions
-    func getStartingSetings() {
+    func getStartingData() {
         interactor?.getSettingsPoints()
     }
 
@@ -60,7 +60,7 @@ class SettingsAppPresenter: AnyPresenter {
         router?.openAnotherScreen()
     }
 
-    func pushViewController(_ viewController: AnyView) {
+    func pushViewController(_ viewController: SettingsViewProtocol) {
         view?.pushViewController(viewController)
     }
 }

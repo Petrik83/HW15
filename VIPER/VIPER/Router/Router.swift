@@ -7,22 +7,22 @@
 
 import Foundation
 
-protocol AnyRouter: AnyObject {
-    var presenter: AnyPresenter? { get set }
+protocol SettingsRouterProtocol: AnyObject {
+    var presenter: SettingsPresenterProtocol? { get set }
 
-    static func start() -> AnyView
+    static func start() -> SettingsViewProtocol
     func openAnotherScreen()
 }
 
-class SettingsAppRouter: AnyRouter {
-    weak var presenter: AnyPresenter?
+class SettingsAppRouter: SettingsRouterProtocol {
+    weak var presenter: SettingsPresenterProtocol?
 
-    static func start() -> AnyView {
+    static func start() -> SettingsViewProtocol {
         let router = SettingsAppRouter()
 
-        let view: AnyView = SettingsAppViewController()
-        let interactor: AnyInteractor = SettingsAppInteractor()
-        let presenter: AnyPresenter = SettingsAppPresenter()
+        let view: SettingsViewProtocol = SettingsAppViewController()
+        let interactor: SettingsInteractorProtocol = SettingsAppInteractor()
+        let presenter: SettingsPresenterProtocol = SettingsAppPresenter()
 
         view.presenter = presenter
         interactor.presenter = presenter
